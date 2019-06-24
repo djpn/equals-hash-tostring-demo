@@ -61,7 +61,7 @@ public class Demo implements Serializable {
     return z;
   }
 
-  protected Object[] state() {
+  protected Object[] state() { // protected in case we want to add more state fields in subclasses.
     return new Object[]{x, y, z};
   }
 
