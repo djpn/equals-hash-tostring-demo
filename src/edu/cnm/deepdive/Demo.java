@@ -39,10 +39,12 @@ public class Demo implements Serializable {
 
   @Override
   public boolean equals(Object other) {
-    return other != null
-        && other.getClass() == getClass()
-        && other.hashCode() == hashCode() // If we're following the recommended equals-hashCode contract, we can depend on this.
-        && Arrays.equals(((Demo) other).state(), state());
+    return other == this // reflexive: if comparing an object to itself, equals should work like ==.
+        || (other != null
+            && other.getClass() == getClass()
+            && other.hashCode() == hashCode() // If implementing the recommended equals-hashCode
+                                              // contract, we can depend on this.
+            && Arrays.equals(((Demo) other).state(), state()));
   }
 
   @Override
@@ -63,7 +65,7 @@ public class Demo implements Serializable {
   }
 
   protected Object[] state() { // protected in case we want to add more state fields in subclasses.
-    return new Object[]{x, y, z};
+    return new Object[]{x, y, z}; // An array containing all non-transient, non-static fields.
   }
 
 }
