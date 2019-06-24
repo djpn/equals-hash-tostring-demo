@@ -39,12 +39,13 @@ public class Demo implements Serializable {
 
   @Override
   public boolean equals(Object other) {
-    return other == this // reflexive: if comparing an object to itself, equals should work like ==.
-        || (other != null
-            && other.getClass() == getClass()
+    return other == this // If comparing object to itself, equals must behave as == (reflexivity).
+        || (other != null // a.equals(null), where a != null, must return false.
+            && other.getClass() == getClass() // Check for same class (this is not always the
+                                              // desired behavior, but generally a good idea).
             && other.hashCode() == hashCode() // If implementing the recommended equals-hashCode
                                               // contract, we can depend on this.
-            && Arrays.equals(((Demo) other).state(), state()));
+            && Arrays.deepEquals(((Demo) other).state(), state())); // Compare arrays of fields.
   }
 
   @Override
