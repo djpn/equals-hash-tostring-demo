@@ -14,9 +14,9 @@ public class Demo implements Serializable {
 
   /*
    * Transient fields ...
-   * - Aren't included in standard Java serialization/deserialization.
+   * - Are ignored by standard Java serialization/deserialization process.
    * - Are ignored by Gson & Jackson when serializing/deserializing to/from JSON.
-   * - Are ignored by Room & JPA (including Hibernate) in generating DDL and DML for data model.
+   * - Are generally ignored by ORMs (including Room & JPA/Hibernate) when generating DDL and DML.
    */
   private transient int hash;
   private transient boolean hashComputed;
@@ -29,6 +29,7 @@ public class Demo implements Serializable {
 
   @Override
   public int hashCode() {
+    // Lazily evaluate the hash code.
     if (!hashComputed) {
       hash = Objects.hash(state());
       hashComputed = true;
