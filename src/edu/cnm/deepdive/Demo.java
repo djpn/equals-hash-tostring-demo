@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Demo implements Serializable {
 
   private static final long serialVersionUID = -5390786974047307421L;
+  private static final String FORMAT_STRING = "%s(x: %d, y: %d, z: %.3f)";
 
   private final int x;
   private final int y;
@@ -50,7 +51,7 @@ public class Demo implements Serializable {
 
   @Override
   public String toString() {
-    return String.format("%s(x: %d, y: %d, z: %.3f)", getClass().getName(), x, y, z);
+    return String.format(FORMAT_STRING, getClass().getName(), x, y, z);
   }
 
   public int getX() {
