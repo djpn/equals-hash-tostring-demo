@@ -46,9 +46,10 @@ public class Demo implements Serializable {
         || (other instanceof Demo
             // If implementing the recommended equals-hashCode contract, we can depend on this.
             && other.hashCode() == hashCode()
-            // Compare arrays of fields; as long as we override state method appropriately for
+            // Compare arrays of fields. As long as we override state method appropriately for
             // subclasses that add state fields, this approach preserves symmetry and respects the
-            // Liskov substitution principle.
+            // Liskov substitution principle, under the condition that the instances being compared
+            // have the same set of state fields (even if not of the same class).
             && Arrays.deepEquals(((Demo) other).state(), state()));
   }
 
