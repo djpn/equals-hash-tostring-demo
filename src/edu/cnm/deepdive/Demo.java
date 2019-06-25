@@ -49,7 +49,7 @@ public class Demo implements Serializable {
             // Compare arrays of fields; as long as we override state method appropriately for
             // subclasses that add state fields, this approach preserves symmetry and respects the
             // Liskov substitution principle.
-            && Arrays.deepEquals( ((Demo) other).state(), state()));
+            && Arrays.deepEquals(((Demo) other).state(), state()));
   }
 
   @Override
