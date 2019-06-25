@@ -40,15 +40,16 @@ public class Demo implements Serializable {
 
   @Override
   public boolean equals(Object other) {
-    return other == this // If comparing object to itself, equals must behave as == (reflexivity).
-        || (other != null // a.equals(null) must return false. (Note that necessarily, a != null.)
-            && other.getClass() == getClass() // Check for same class. (Note: This is not always the
-                                              // correct behavior, as it can lead to a violation of
-                                              // the Liskov substitution principle, but it preserves
-                                              // symmetry, and is appropriate for some applications.)
-            && other.hashCode() == hashCode() // If implementing the recommended equals-hashCode
-                                              // contract, we can depend on this.
-            && Arrays.deepEquals(((Demo) other).state(), state())); // Compare arrays of fields.
+    // If comparing object to itself, equals must behave as == (reflexivity).
+    return other == this
+        // See comment below on comparing state. (Also ensures a.equals(null) returns false.)
+        || (other instanceof Demo
+            // If implementing the recommended equals-hashCode contract, we can depend on this.
+            && other.hashCode() == hashCode()
+            // Compare arrays of fields; as long as we override state method appropriately for
+            // subclasses that add state fields, this approach preserves symmetry and respects the
+            // Liskov substitution principle.
+            && Arrays.deepEquals( ((Demo) other).state(), state()));
   }
 
   @Override
