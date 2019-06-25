@@ -40,7 +40,7 @@ public class Demo implements Serializable {
 
   @Override
   public boolean equals(Object other) {
-    // If comparing object to itself, equals must behave as == (reflexivity).
+    // If comparing object to itself, equals must behave like == (reflexivity).
     return other == this
         // See comment below on comparing state. (Also ensures a.equals(null) returns false.)
         || (other instanceof Demo
